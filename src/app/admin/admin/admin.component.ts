@@ -58,66 +58,6 @@ export class AdminComponent implements OnInit {
 
   }
 
-  status1(clime: any, event: any) {
-    // event = 'approved1';
-    const obj = JSON.stringify({
-      claimId: clime.claimId,
-      status: 'approved1'
-    });
-    this.adminService.statusChange(obj).subscribe((status) => {
-      if (status.statusCode === 200) {
-        this.alertType = 'success';
-        this.displayAlert = true;
-        this.alertMessage = ` ${status.message}`;
-      }
-    });
-
-  }
-  referBack1(clime: any, event: any) {
-    // event = 'referredBack';
-    const obj = {
-      claimId: clime.claimId,
-      status: 'referredBack'
-    };
-    this.adminService.statusChange(obj).subscribe((status) => {
-      if (status.statusCode === 200) {
-        this.alertType = 'info';
-        this.displayAlert = true;
-        this.alertMessage = ` has beeen refered back`;
-      }
-    });
-  }
-
-  status2(clime: any, event: any) {
-    // event = 'approved1';
-    const obj = {
-      claimId: clime.claimId,
-      status: 'approved2'
-    };
-    this.adminService.statusChange(obj).subscribe((status) => {
-      if (status.statusCode === 200) {
-        this.alertType = 'success';
-        this.displayAlert = true;
-        this.alertMessage = ` has beeen approved`;
-      }
-    });
-
-  }
-  referBack2(clime: any, event: any) {
-    event = 'referBack';
-    const obj = {
-      claimId: clime.claimId,
-      status: 'referredBack'
-    };
-    this.adminService.statusChange(obj).subscribe((status) => {
-      if (status.statusCode === 200) {
-        this.alertType = 'info';
-        this.displayAlert = true;
-        this.alertMessage = ` has beeen refered back`;
-      }
-    });
-  }
-
   /** status change function */
   status(clime: any, event: any) {
     let s;

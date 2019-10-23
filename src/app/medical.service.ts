@@ -9,7 +9,6 @@ import { environment } from '../environments/environment';
 })
 export class MedicalService {
   fileUploadUrl: string = '';
-  policies: string = 'http://10.117.189.84:7770/mediclaim/members/{userId}/policies';
   constructor(private httpClient: HttpClient) { }
 
 

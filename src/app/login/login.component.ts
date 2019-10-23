@@ -15,9 +15,7 @@ export class LoginComponent implements OnInit {
 
   /** form variables */
   loginForm: FormGroup;
-  loading = false;
   submitted = false;
-  err = false;
 
   email: string;
   password: string;
@@ -51,8 +49,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-
-    this.loading = true;
     const loginUrl = 'http://192.168.43.189:7770/mediclaim/users/login';
     this.http.post(loginUrl, this.loginForm.value).subscribe((res: any) => {
       const userIDis = 'userId';
@@ -75,7 +71,6 @@ export class LoginComponent implements OnInit {
         console.log(roleId);
       }
     }, (err: HttpErrorResponse) => {
-      this.err = true;
       if (err) {
         this.alertType = 'danger';
         this.displayAlert = true;
