@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-md bg-info navbar-info sticky-top zindex">
+    <a class="navbar-brand"></a>
+    <span class="text-white">Medical Claims</span>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb"
+        aria-expanded="true">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navb" class="navbar-collapse collapse hide">
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item" *ngIf="isLogin && roleBased">
+                <a class="nav-link text-white" routerLinkActive="active" routerLink="/home">Home</a>
+            </li>
+            <li class="nav-item" *ngIf="isLogin">
+                <a class="nav-link text-white" routerLinkActive="active" routerLink="/claim-list">Claim
+                    List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" *ngIf="isLogin "> Dependents</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a *ngIf="!isLogin" class="nav-link" routerLinkActive="active" routerLink="/login"><span
+                        class="fas fa-sign-in-alt"></span> Login</a>
+            </li> -->
+
+            <li class="dropdown" *ngIf="isLogin">
+                <a class="dropdown-toggle text-white drop " data-toggle="dropdown" href="#">New Claim
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/create-claims">Hospitalization</a>
+                    </li>
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/create-claims">Pre-Post
+                            Hospitalization</a></li>
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/create-claims">Dental Claim</a></li>
+                </ul>
+            </li>
+            <li></li>
+            <li class="nav-item">
+                <a class="nav-link text-white" *ngIf="isLogin">
+                    <span class="fas fa-user"></span> {{currentEmail}}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="isLogin" class="nav-link text-white pointer" routerLinkActive="active"
+                    (click)="logout()"><span class="fas fa-sign-in-alt"></span>
+                    Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>

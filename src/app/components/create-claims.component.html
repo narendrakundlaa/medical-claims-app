@@ -1,0 +1,36 @@
+<app-alert-component [display]="displayAlert" [type]="alertType" [message]="alertMessage" (closeEvent)="closeAlert()">
+</app-alert-component>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="claimsForm">
+    <div class="form">
+        <h3 class="text-warning" style="text-align: center;"> Claims request </h3>
+        <app-input-component [name]="'userId'" [placeholder]="'userId'" [formGroup]="employeeForm">
+        </app-input-component>
+        <app-input-component [name]="'policyId'" [placeholder]="'policyId'" [formGroup]="employeeForm">
+        </app-input-component>
+        <app-input-component [name]="'admissionDate'" [type]="'date'" [placeholder]="'admissionDate'"
+            [formGroup]="employeeForm">
+        </app-input-component>
+        <app-input-component [name]="'dischargeDate'" [type]="'date'" [placeholder]="'dischargeDate'"
+            [formGroup]="employeeForm">
+        </app-input-component>
+        <app-input-component [name]="'patientName'" [placeholder]="'patientName'" [formGroup]="employeeForm">
+        </app-input-component>
+        <app-input-component [name]="'claimAmount'" [placeholder]="'claimAmount'" [formGroup]="employeeForm">
+        </app-input-component>
+        <app-input-component [name]="'hospitalName'" [type]="'text'" [placeholder]="'hospitalName'"
+            [formGroup]="employeeForm">
+        </app-input-component>
+        <app-input-component [name]="'dischargeSummary'" [type]="'text'" [placeholder]="'dischargeSummary'"
+            [formGroup]="employeeForm">
+        </app-input-component>
+        <app-input-component [name]="'diagnosis'" [type]="'text'" [placeholder]="'diagnosis'"
+            [formGroup]="employeeForm">
+        </app-input-component>
+        <!-- <input type="file" id="upload" (change)="fileChane($event)" name="file" /> -->
+        <div class="panel-footer ml-4">
+            <button class="btn btn-danger" style="margin-left: 535px;width: 15%;margin-bottom: 5%;" type="submit">Clime
+                request</button>
+        </div>
+    </div>
+</form>

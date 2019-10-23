@@ -1,0 +1,32 @@
+<app-alert-component [display]="displayAlert" [type]="alertType" [message]="alertMessage" (closeEvent)="closeAlert()">
+</app-alert-component>
+
+<!-- <app-tables-component [tableName]="tableTitle" [headers]="Headers" [items]="climsList" [showApproveBtn]=true
+    [showRejectBtn]=true>
+</app-tables-component> -->
+
+<div class="row border border-info m-4 marginBottom">
+    <table class="table table-bordered table-grey">
+        <thead>
+            <tr>
+                <th scope="col">Claim ID
+                </th>
+                <th scope="col">Policy ID
+                </th>
+                <th scope="col">Policy Amount
+                </th>
+                <th scope="col">Medical </th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pol of climsList">
+                <th scope="row"> {{pol.claimId}}</th>
+                <td>{{pol.policyId}}</td>
+                <td>{{pol.claimAmount}}</td>
+                <td>{{pol.diagnosis}}</td>
+                <td>{{pol.claimStatus}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

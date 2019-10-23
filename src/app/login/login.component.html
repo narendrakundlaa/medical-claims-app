@@ -1,0 +1,28 @@
+<form [formGroup]="loginForm" class="modal-content animate" (ngSubmit)="onSubmit()" id="formDimentions">
+    <!-- <h2 style="text-align: center; color: green"> Login Form</h2> -->
+    <div class="imgcontainer">
+
+        <img src="https://img.etimg.com/thumb/height-450,width-800,imgsize-14242,msid-53257702/.jpg" alt="HCL Tech"
+            class="avatar">
+    </div>
+
+    <div class="container">
+        <div class="form-group">
+            <label for="uname"><i class="fas fa-star text-success"></i><b> Username</b></label>
+            <input type="email" placeholder="Enter Username" name="uname" formControlName="email"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+            <div *ngIf="submitted && f.email.errors">
+                <div *ngIf="f.email.errors.required" style="color: red;">Email is required</div>
+            </div>
+        </div>
+        <label for="psw"><i class="fas fa-star text-success"></i><b> Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" formControlName="password"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+        <div *ngIf="submitted && f.password.errors">
+            <div *ngIf="f.password.errors.required" style="color: red;">Password is required</div>
+        </div>
+        <button type="submit">Login</button>
+    </div>
+</form>
+<app-alert-component [display]="displayAlert" [type]="alertType" [message]="alertMessage" (closeEvent)="closeAlert()">
+</app-alert-component>

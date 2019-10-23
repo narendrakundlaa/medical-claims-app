@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>{{tableName}}</h2>
+    <table class="table table-bordered">
+        <thead>
+            <th *ngFor="let header of headers">{{ header }}</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of items">
+                <td *ngFor="let value of item | objectValues">
+                    {{ value }}
+                </td>
+                <td>
+                    <button *ngIf="showApproveBtn" class="btn btn-primary" style="margin-right: 2px"
+                        (click)="approver(item)">Approve</button>
+                    <button *ngIf="showRejectBtn" class="btn btn-warning" style="margin-right: 2px"
+                        (click)="referBack(item)">Refer Back</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

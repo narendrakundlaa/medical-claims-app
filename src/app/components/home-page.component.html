@@ -1,0 +1,75 @@
+<span class="titleDate">Current Medical Cycle :01-Oct-2019 To 30-Sep-2020</span><br /><br /><br />
+
+<div class="row border border-info m-4">
+
+    <table class="table table-bordered table-grey">
+        <thead>
+            <tr>
+                <th scope="col">Policy Number
+                </th>
+                <th scope="col">Current User
+                </th>
+                <th scope="col">Policy Name
+                </th>
+                <th scope="col">Policy Amount
+                </th>
+                <th scope="col">Medical Cycle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pol of policies">
+                <th scope="row"> {{pol.policyId}}</th>
+                <td>Nare</td>
+                <td>{{pol.policyName}}</td>
+                <td>{{pol.policyAmount}}</td>
+                <td>2019-20</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row" style="margin-left: 26px;margin-right: -84px;margin-bottom: 300px;">
+    <div class="col-6 border border-info mr-2">
+        <h5 style="background: #e4e4e3;margin-left: -15px;margin-right: -15px;padding: 5px">Notes: </h5>
+        1) Dependents data will reflect within 24-48 hours after declaration in ESS.<br />
+        2) E-cards will be available for download after 48-72 hours post your declaration on ESS – Dependent details for
+        Mediclaim.<br />
+        3) EMCP employees are not allowed to raise claim for self but can raise claim for their dependents.<br />
+        4) If employees who are enrolled under EMCP plan, return back to India and face any issue in raising claims for
+        self, they can raise SSD at MYHCL => Smart Service Desk (SSD) Home page => Service Request => Country (India) =>
+        Business Group (HR) => Business Process (Medical Claims) => Choose appropriate Business Sub-Process or
+        application.<br />
+        5) If you have an issue related to amount deducted from your salary under Medical premium payable or Medical
+        premium coverable please raise SSD at MYHCL => Smart Service Desk (SSD) Home page => Service Request => Country
+        (India) => Business Group (HR) => Business Process (Medical Claims) => Choose appropriate Business Sub-Process
+        or application.<br />
+        6) For detailed information on Medical Insurance Policy, click here or visit My HCL >> HR Studio >> Policy Hub
+        >>
+        HR >> Employment related >> Medical Insurance Policy.<br />
+        7) For any process related query in Medical Claim, raise a SSD ticket to MYHCL => Smart Service Desk (SSD) Home
+        page => Service Request => Country (India) => Business Group (HR) => Business Process (Medical Claims) => Choose
+        appropriate Business Sub-Process or application<br />
+        8) In case of an emergency, please call on 1860 425 0255 or raise SSD using below path<br />
+
+        MyHCL >> Smart Service Desk >> Service Request >> HR (under Business Group) >> HR Benefits & Policy
+        Clarification – India Medical Benefit programs (under Business process)
+    </div>
+    <div class="col-5  border border-info">
+        <h5 style="background: #e4e4e3;margin-left: -15px;margin-right: -15px;padding: 5px">Claim Status Definitions
+        </h5>
+        <ul>
+            <li> <b>New</b> - Claim is with the employee.</li>
+            <li> <b>Submitted</b> -Claim is submitted to HRSC.</li>
+            <li> <b>Resubmitted</b> - Claim re-submitted by employee to HRSC.</li>
+            <li><b>Claim received and inprocess</b> - Claim sent to insurance company.</li>
+            <li><b>Partially approved</b> - Claimed amount is partially approved by insurance company.</li>
+            <li><b>Refer back </b>- Claim referred back to employee by insurance company.</li>
+            <li><b>Information required </b>- Additional documents required by insurance company.</li>
+            <li><b>Completed</b> - Claim fully approved.</li>
+            <li> <b>Disabled</b> - The claim is disabled as it has exceeded its processing timelines and thus it can not
+                be
+                reprocessed now. For any clarifications please refer to the Medical Insurance Policy.</li>
+            <li> <b>Denied</b> - Claim denied as per policy.</li>
+        </ul>
+    </div>
+</div>

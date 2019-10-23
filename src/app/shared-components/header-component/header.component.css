@@ -1,0 +1,15 @@
+.zindex {
+    z-index: 2;
+}
+img{
+    width: 120px;
+    height: 81px;
+}
+.drop {
+    position: relative;
+    top: 9px;
+    margin-right: 30px;
+}
+.pointer {
+    cursor: pointer;
+}

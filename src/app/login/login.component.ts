@@ -1,0 +1,94 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { LoginService } from './login.service';
+
+/** global environment for URL */
+import { environment } from '../../environments/environment';
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+
+  /** form variables */
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  err = false;
+
+  email: String;
+  password: String;
+  userId: number;
+
+  /** alert variables */
+  alertType: string;
+  displayAlert: boolean = false;
+  alertMessage: string;
+
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private http: HttpClient, private loginService: LoginService
+  ) { }
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [
+        Validators.required,
+        Validators.pattern("[^ @]*@[^ @]*")]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(2)]],
+    });
+  }
+  get f() { return this.loginForm.controls; }
+
+  /** login function */
+  onSubmit() {
+    console.log(this.loginForm.value);
+
+    this.submitted = true;
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    let loginUrl = 'http://192.168.43.189:7770/mediclaim/users/login';
+    this.http.post(loginUrl, this.loginForm.value).subscribe((res: any) => {
+      console.log(res['userId']);
+      console.log(res.roleId);
+      if (res.statusCode == 200) {
+        if (res.roleId == 2 || res.roleId == 3) {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/home']);
+        }
+
+        this.loginService.updateLoginStatus(true);
+        localStorage.setItem('currentEmail', this.loginForm.controls.email.value);
+        localStorage.setItem("userId", res['userId']);
+        localStorage.setItem('roleId', res.roleId);
+        console.log(res.roleId);
+      }
+    }, (err: HttpErrorResponse) => {
+      this.err = true;
+      if (err) {
+        this.alertType = 'danger';
+        this.displayAlert = true;
+        this.alertMessage = ` ${err.error.message} or incorrect  password`;
+      }
+      console.log("rerror", err)
+    });
+  }
+
+  /** clear alert */
+  closeAlert() {
+    this.displayAlert = false;
+    this.loginForm.reset();
+
+  }
+
+}
