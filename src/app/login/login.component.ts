@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
   submitted = false;
   err = false;
 
-  email: String;
-  password: String;
+  email: string;
+  password: string;
   userId: number;
 
   /** alert variables */
@@ -28,16 +28,13 @@ export class LoginComponent implements OnInit {
   displayAlert: boolean = false;
   alertMessage: string;
 
-  constructor(private formBuilder: FormBuilder,
-    private router: Router,
-    private http: HttpClient, private loginService: LoginService
-  ) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private loginService: LoginService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', [
         Validators.required,
-        Validators.pattern("[^ @]*@[^ @]*")]],
+        Validators.pattern('[^ @]*@[^ @]*')]],
       password: ['', [
         Validators.required,
         Validators.minLength(2)]],
@@ -56,12 +53,16 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    let loginUrl = 'http://192.168.43.189:7770/mediclaim/users/login';
+    const loginUrl = 'http://192.168.43.189:7770/mediclaim/users/login';
     this.http.post(loginUrl, this.loginForm.value).subscribe((res: any) => {
-      console.log(res['userId']);
+      const userIDis = 'userId';
+      console.log(res[userIDis]);
       console.log(res.roleId);
-      if (res.statusCode == 200) {
-        if (res.roleId == 2 || res.roleId == 3) {
+      const status = res.statusCode;
+      const roleId = res.roleId;
+      /* status chacking */
+      if (status === 200) {
+        if (roleId === 2 || roleId === 3) {
           this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/home']);
@@ -69,18 +70,18 @@ export class LoginComponent implements OnInit {
 
         this.loginService.updateLoginStatus(true);
         localStorage.setItem('currentEmail', this.loginForm.controls.email.value);
-        localStorage.setItem("userId", res['userId']);
-        localStorage.setItem('roleId', res.roleId);
-        console.log(res.roleId);
+        localStorage.setItem('userId', res[userIDis]);
+        localStorage.setItem('roleId', roleId);
+        console.log(roleId);
       }
     }, (err: HttpErrorResponse) => {
       this.err = true;
       if (err) {
         this.alertType = 'danger';
         this.displayAlert = true;
-        this.alertMessage = ` ${err.error.message} or incorrect  password`;
+        this.alertMessage = ` Invalid user or incorrect  password`;
       }
-      console.log("rerror", err)
+      console.log('rerror', err);
     });
   }
 

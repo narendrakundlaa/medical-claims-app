@@ -6,10 +6,10 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./tables.component.css']
 })
 export class TablesComponent implements OnInit {
-  @Input() tableName: string = "Sample Table";
+  @Input() tableName: string = 'Sample Table';
 
   @Input() items: any[];  // array of object
-  @Input() headers: any; // any [] // array for headder fields 
+  @Input() headers: any;
   @Input() showApproveBtn: boolean = false;
   @Input() showRejectBtn: boolean = false;
   @Output() approve = new EventEmitter();
@@ -23,8 +23,8 @@ export class TablesComponent implements OnInit {
   approver(data) {
     this.approve.emit(data);
   }
-  referBack(data_id) {
-    this.refer.emit(data_id);
+  referBack(dataId) {
+    this.refer.emit(dataId);
   }
 
 }

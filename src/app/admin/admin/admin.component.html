@@ -1,19 +1,21 @@
 <app-alert-component [display]="displayAlert" [type]="alertType" [message]="alertMessage" (closeEvent)="closeAlert()">
 </app-alert-component>
-<div *ngIf="junier">
+
+<!-- <div *ngIf="junier">
     <app-tables-component [tableName]="tableTitleJunierAndSenier" [headers]="HeadersJunierAndSenier"
         [items]="junierClaimsList" [showApproveBtn]=true [showRejectBtn]=true (approve)="status($event)"
         (refer)="referBack($event)">
     </app-tables-component>
 </div>
-<div *ngIf="senier">
+
+<div *ngIf="!junier">
     <app-tables-component [tableName]="tableTitleJunierAndSenier" [headers]="HeadersJunierAndSenier"
         [items]="senierClaimsList" [showApproveBtn]=true [showRejectBtn]=true (approve)="status($event)"
         (refer)="referBack($event)">
     </app-tables-component>
-</div>
+</div> -->
 
-<!-- <div class="row border border-info m-4" *ngIf="junier">
+<div class="row border border-info m-4">
     <h1><span class="text-success">Approve</span>/<span class="text-danger">Reject</span> - Level 1</h1>
     <table class="table table-bordered table-grey">
         <thead>
@@ -27,7 +29,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let pol of junierApprover">
+            <tr *ngFor="let pol of junierClaimsList">
                 <th scope="row"> {{pol.claimId}}</th>
                 <td>{{pol.policyId}}</td>
                 <td>{{pol.claimAmount}}</td>
@@ -42,10 +44,10 @@
             </tr>
         </tbody>
     </table>
-</div> -->
+</div>
 <!-- senier appover -->
-<!-- 
-<div class="row border border-info m-4 marginBottom" *ngIf="senier">
+
+<div class="row border border-info m-4 marginBottom">
     <h1><span class="text-success">Approve</span>/<span class="text-danger">Reject</span> - Final level</h1>
     <table class="table table-bordered table-grey">
         <thead>
@@ -59,7 +61,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let pol of senierApprover">
+            <tr *ngFor="let pol of senierClaimsList">
                 <th scope="row"> {{pol.claimId}}</th>
                 <td>{{pol.policyId}}</td>
                 <td>{{pol.claimAmount}}</td>
@@ -75,4 +77,4 @@
             </tr>
         </tbody>
     </table>
-</div> -->
+</div>

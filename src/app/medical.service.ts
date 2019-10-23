@@ -17,7 +17,7 @@ export class MedicalService {
   sendFiles(event, form) {
     const formData = new FormData();
     console.log('1', event.target.file);
-    console.log('2', event.target.files[0])
+    console.log('2', event.target.files[0]);
     formData.append('file', event.target.files[0]);
     formData.append('userId', form.value.usedId);
     formData.append('policyId', form.value.policyId);
@@ -38,17 +38,7 @@ export class MedicalService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
-    })
-  }
-
-  localStorageSetItems(key: any, value: any) {
-    localStorage.setItem(key, value);
-  }
-  localStorageGetItems(key: any) {
-    localStorage.getItem(key);
-  }
-  localStorageRemoveItem(key: any) {
-    localStorage.removeItem(key);
+    });
   }
 
 }

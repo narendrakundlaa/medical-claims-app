@@ -14,11 +14,12 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     /** get user ID from storage */
-    const userId = parseInt(localStorage.getItem("userId"));
+    const userId = parseInt(localStorage.getItem('userId'), 10);
+    alert(userId);
     /** get list of policies */
     this.medicalService.getPolicies(userId).subscribe((policiesResponce: any) => {
       this.policies = policiesResponce.polices;
-    })
+    });
   }
 
 }

@@ -5,8 +5,8 @@ import { PipeTransform, Pipe } from '@angular/core';
 })
 export class ObjectValuesPipe implements PipeTransform {
     transform(obj: any) {
-        let result = [];
-        for (var key in obj) {
+        const result = [];
+        for (const key in obj) {
             if (obj.hasOwnProperty(key)) {
                 result.push(obj[key]);
             }

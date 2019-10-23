@@ -36,7 +36,7 @@ export class CreateClaimsComponent implements OnInit {
   onSubmit() {
     /** send request for claims */
     this.medicalService.addClaims(this.employeeForm.value).subscribe((sendClaim: any) => {
-      if (sendClaim.statusCode == 201) {
+      if (sendClaim.statusCode === 201) {
         this.alertType = 'success';
         this.displayAlert = true;
         this.alertMessage = ` ${this.employeeForm.get('patientName').value} record has been created`;
@@ -47,7 +47,7 @@ export class CreateClaimsComponent implements OnInit {
         this.displayAlert = true;
         this.alertMessage = ` ${err.error.message}`;
       }
-    })
+    });
   }
   /** close alert button */
   closeAlert() {
@@ -60,7 +60,7 @@ export class CreateClaimsComponent implements OnInit {
     this.medicalService.sendFiles(event, this.employeeForm).subscribe((data: any) => {
       console.log(data);
       console.log(data.statusCode);
-      if (data.statusCode == 200) {
+      if (data.statusCode === 200) {
         alert('File is submited successfully...');
       } else {
         alert('Server issue: file uploading failed, please try again..');

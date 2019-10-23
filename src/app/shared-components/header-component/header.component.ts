@@ -17,13 +17,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.roleId = localStorage.getItem('roleId');
-    // alert(this.roleId);    
-    this.userId = localStorage.getItem("userId");
+
+    this.userId = localStorage.getItem('userId');
 
     this.loginService.loginStautus.subscribe(data => {
-      // alert('login stauts' + data)
+
       this.isLogin = data;
-    })
+    });
     this.currentEmail = localStorage.getItem('currentEmail');
     console.log(this.currentEmail);
   }

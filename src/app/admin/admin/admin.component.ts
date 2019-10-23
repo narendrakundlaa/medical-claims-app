@@ -19,7 +19,6 @@ export class AdminComponent implements OnInit {
 
   roleId: any;
   junier: boolean = false;
-  senier: boolean = false;
 
   /** reusable tables to show based on approver 1 and approver 2  */
   junierTable: boolean = false;
@@ -36,25 +35,24 @@ export class AdminComponent implements OnInit {
     this.HeadersJunierAndSenier = ['Claim ID ', 'Policy Id', 'Policy Amount', 'Medical Diagnosis', 'Summery', 'Action'];
     this.roleId = localStorage.getItem('roleId');
     /** show approver tables based on role Id */
-    if (this.roleId == 2) {
+    if (this.roleId === 2) {
       this.junier = true;
-    } else if (this.roleId == 3) {
-      this.senier = true;
+    } else if (this.roleId === 3) {
+      this.junier = false;
     }
 
     /** get jr admin claim list */
     this.adminService.junierAdminClaimList().subscribe((list: any) => {
-      if (list.viewClaims) {
-        this.junierClaimsList = list.viewClaims;
-      }
-      console.log(this.junierApprover.length);
+
+      this.junierClaimsList = list.viewClaims;
+      console.log(this.HeadersJunierAndSenier);
+      console.log(this.junierClaimsList);
     });
 
-    /**get list of senierApprover */
+    /* get list of senierApprover */
     this.adminService.senierAdminClaimList().subscribe((list: any) => {
-      if (list.viewClaims) {
-        this.senierClaimsList = list.viewClaims;
-      }
+      this.senierClaimsList = list.viewClaims;
+
       console.log(list.viewClaims);
     });
 
@@ -62,12 +60,12 @@ export class AdminComponent implements OnInit {
 
   status1(clime: any, event: any) {
     // event = 'approved1';
-    const obj = {
-      "claimId": clime.claimId,
-      "status": "approved1"
-    }
+    const obj = JSON.stringify({
+      claimId: clime.claimId,
+      status: 'approved1'
+    });
     this.adminService.statusChange(obj).subscribe((status) => {
-      if (status.statusCode == 200) {
+      if (status.statusCode === 200) {
         this.alertType = 'success';
         this.displayAlert = true;
         this.alertMessage = ` ${status.message}`;
@@ -78,11 +76,11 @@ export class AdminComponent implements OnInit {
   referBack1(clime: any, event: any) {
     // event = 'referredBack';
     const obj = {
-      "claimId": clime.claimId,
-      "status": "referredBack"
-    }
+      claimId: clime.claimId,
+      status: 'referredBack'
+    };
     this.adminService.statusChange(obj).subscribe((status) => {
-      if (status.statusCode == 200) {
+      if (status.statusCode === 200) {
         this.alertType = 'info';
         this.displayAlert = true;
         this.alertMessage = ` has beeen refered back`;
@@ -93,11 +91,11 @@ export class AdminComponent implements OnInit {
   status2(clime: any, event: any) {
     // event = 'approved1';
     const obj = {
-      "claimId": clime.claimId,
-      "status": "approved2"
-    }
+      claimId: clime.claimId,
+      status: 'approved2'
+    };
     this.adminService.statusChange(obj).subscribe((status) => {
-      if (status.statusCode == 200) {
+      if (status.statusCode === 200) {
         this.alertType = 'success';
         this.displayAlert = true;
         this.alertMessage = ` has beeen approved`;
@@ -108,11 +106,11 @@ export class AdminComponent implements OnInit {
   referBack2(clime: any, event: any) {
     event = 'referBack';
     const obj = {
-      "claimId": clime.claimId,
-      "status": "referredBack"
-    }
+      claimId: clime.claimId,
+      status: 'referredBack'
+    };
     this.adminService.statusChange(obj).subscribe((status) => {
-      if (status.statusCode == 200) {
+      if (status.statusCode === 200) {
         this.alertType = 'info';
         this.displayAlert = true;
         this.alertMessage = ` has beeen refered back`;
@@ -122,20 +120,21 @@ export class AdminComponent implements OnInit {
 
   /** status change function */
   status(clime: any, event: any) {
+    let s;
     console.log(clime);
-    if (this.roleId == 2) {
-      this.objectStatusPass = {
-        "claimId": clime.claimId,
-        "status": "approved1"
-      }
-    } else if (this.roleId == 3) {
-      this.objectStatusPass = {
-        "claimId": clime.claimId,
-        "status": "approved2"
-      }
+    if (this.roleId === 2) {
+      s = 1;
+    } else if (this.roleId === 3) {
+      s = 2;
     }
+
+    this.objectStatusPass = {
+      claimId: clime.claimId,
+      status: 'approved' + s
+    };
     this.adminService.statusChange(this.objectStatusPass).subscribe((status) => {
-      if (status.statusCode == 200) {
+      console.log(this.objectStatusPass);
+      if (status.statusCode === 200) {
         this.alertType = 'success';
         this.displayAlert = true;
         this.alertMessage = ` ${status.message}`;
@@ -146,11 +145,11 @@ export class AdminComponent implements OnInit {
   referBack(clime: any, event: any) {
     console.log(clime);
     this.objectReferPass = {
-      "claimId": clime.claimId,
-      "status": "referredBack"
-    }
+      claimId: clime.claimId,
+      status: 'referredBack'
+    };
     this.adminService.statusChange(this.objectReferPass).subscribe((status) => {
-      if (status.statusCode == 200) {
+      if (status.statusCode === 200) {
         this.alertType = 'info';
         this.displayAlert = true;
         this.alertMessage = ` has beeen refered back`;

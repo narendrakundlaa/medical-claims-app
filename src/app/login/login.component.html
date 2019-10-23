@@ -8,14 +8,14 @@
 
     <div class="container">
         <div class="form-group">
-            <label for="uname"><i class="fas fa-star text-success"></i><b> Username</b></label>
+            <label for="uname"><b> Username</b> <b class="text-danger"> *</b></label>
             <input type="email" placeholder="Enter Username" name="uname" formControlName="email"
                 [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
             <div *ngIf="submitted && f.email.errors">
                 <div *ngIf="f.email.errors.required" style="color: red;">Email is required</div>
             </div>
         </div>
-        <label for="psw"><i class="fas fa-star text-success"></i><b> Password</b></label>
+        <label for="psw"><b> Password</b> <b class="text-danger"> *</b></label>
         <input type="password" placeholder="Enter Password" name="psw" formControlName="password"
             [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
         <div *ngIf="submitted && f.password.errors">

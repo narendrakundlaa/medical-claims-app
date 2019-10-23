@@ -25,11 +25,5 @@ export class AdminService {
       })
     });
   }
-  // admin(employee: any): Observable<any> {
-  //   return this.httpClient.post<any>(environment.baseUrl + '/mediclaim/admin/claims', employee, {
-  //     headers: new HttpHeaders({
-  //       'Content-Type': 'application/json'
-  //     })
-  //   })
-  // }
+
 }
