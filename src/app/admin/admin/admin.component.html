@@ -1,14 +1,15 @@
+<!-- alert message component -->
 <app-alert-component [display]="displayAlert" [type]="alertType" [message]="alertMessage" (closeEvent)="closeAlert()">
 </app-alert-component>
-
+<!-- approver 1 table -->
 <!-- <div *ngIf="junier">
     <app-tables-component [tableName]="tableTitleJunierAndSenier" [headers]="HeadersJunierAndSenier"
         [items]="junierClaimsList" [showApproveBtn]=true [showRejectBtn]=true (approve)="status($event)"
         (refer)="referBack($event)">
     </app-tables-component>
-</div>
-
-<div *ngIf="!junier">
+</div> -->
+<!-- approver 2 table -->
+<!-- <div *ngIf="!junier">
     <app-tables-component [tableName]="tableTitleJunierAndSenier" [headers]="HeadersJunierAndSenier"
         [items]="senierClaimsList" [showApproveBtn]=true [showRejectBtn]=true (approve)="status($event)"
         (refer)="referBack($event)">

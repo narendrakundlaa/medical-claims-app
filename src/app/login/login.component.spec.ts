@@ -35,17 +35,17 @@ describe('LoginComponent', () => {
     expect(email.valid).toBeFalsy();
 
 
-    // email field is required
+    /* email field is required*/
     errors = email.errors || {};
     expect(errors['required']).toBeTruthy();
 
-    // set some value to email
+    /*set some value to email*/
     email.setValue('test');
     errors = email.errors || {};
     expect(errors['required']).toBeFalsy();
     expect(errors['pattren']).toBeTruthy();
 
-    // email correct value sample
+    /* email correct value sample */
     email.setValue('john@gmail.com');
     errors = email.errors || {};
     expect(errors['required']).toBeFalsy();
@@ -55,17 +55,17 @@ describe('LoginComponent', () => {
     let errors = {};
     let password = component.loginForm.controls['password'];
 
-    // Email password is required
+    /* Email password is required */
     errors = password.errors || {};
     expect(errors['required']).toBeTruthy();
 
-    // Set password to something
+    /* Set password to something */
     password.setValue("1");
     errors = password.errors || {};
     expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeTruthy();
 
-    // Set password to something correct
+    /* Set password to something correct*/
     password.setValue("12345");
     errors = password.errors || {};
     expect(errors['required']).toBeFalsy();

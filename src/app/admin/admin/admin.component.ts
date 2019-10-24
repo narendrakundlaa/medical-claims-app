@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
+import { MedicalClaims } from 'src/app/models/medical.model';
 
 @Component({
   selector: 'app-admin',
@@ -25,14 +26,15 @@ export class AdminComponent implements OnInit {
   senierTable: boolean = false;
   tableTitleJunierAndSenier: string = 'Approve/Reject';
   HeadersJunierAndSenier: string[];
-  junierClaimsList: any[];
-  senierClaimsList: any[];
+  junierClaimsList: MedicalClaims[];
+  senierClaimsList: MedicalClaims[];
   objectStatusPass = {};
   objectReferPass = {};
 
   constructor(private adminService: AdminService) { }
   ngOnInit() {
     this.HeadersJunierAndSenier = ['Claim ID ', 'Policy Id', 'Policy Amount', 'Medical Diagnosis', 'Summery', 'Action'];
+
     this.roleId = localStorage.getItem('roleId');
     /** show approver tables based on role Id */
     if (this.roleId === 2) {
@@ -41,7 +43,7 @@ export class AdminComponent implements OnInit {
       this.junier = false;
     }
 
-    /** get jr admin claim list */
+    /** get junier admin claim list */
     this.adminService.junierAdminClaimList().subscribe((list: any) => {
 
       this.junierClaimsList = list.viewClaims;
@@ -59,8 +61,8 @@ export class AdminComponent implements OnInit {
   }
 
   /** status change function */
-  status(clime: any, event: any) {
-    let s;
+  status(clime: MedicalClaims, event: any) {
+    let s: number;
     console.log(clime);
     if (this.roleId === 2) {
       s = 1;

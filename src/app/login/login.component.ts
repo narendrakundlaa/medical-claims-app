@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
 
+  /** user data */
   email: string;
   password: string;
   userId: number;
@@ -29,6 +30,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private loginService: LoginService) { }
 
   ngOnInit() {
+
+    /** forms create */
     this.loginForm = this.formBuilder.group({
       email: ['', [
         Validators.required,
@@ -38,10 +41,11 @@ export class LoginComponent implements OnInit {
         Validators.minLength(2)]],
     });
   }
+  /** get form data */
   get f() { return this.loginForm.controls; }
 
   /** login function */
-  onSubmit() {
+  login() {
     console.log(this.loginForm.value);
 
     this.submitted = true;
@@ -71,6 +75,7 @@ export class LoginComponent implements OnInit {
         console.log(roleId);
       }
     }, (err: HttpErrorResponse) => {
+      /** error handling */
       if (err) {
         this.alertType = 'danger';
         this.displayAlert = true;

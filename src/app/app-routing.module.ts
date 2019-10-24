@@ -3,13 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 /** components import here for config routing */
 import { LoginComponent } from './login/login.component';
-import { HomePageComponent } from './components/home-page.component';
-import { ClaimsListComponent } from './components/claims-list.component';
-import { CreateClaimsComponent } from './components/create-claims.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { ClaimsListComponent } from './components/claims-list/claims-list.component';
+import { CreateClaimsComponent } from './components/create-claims/create-claims.component';
 import { AdminComponent } from './admin/admin/admin.component';
-import { PageNotFoundComponent } from './page-not-found.component';
+import { PageNotFoundComponent } from './shared-components/page-not-found/page-not-found.component';
 
 
+/* config routing */
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
